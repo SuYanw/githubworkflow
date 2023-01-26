@@ -1,0 +1,23 @@
+version: "3"
+services:
+        teste_gt:
+                build: ./server
+                restart: always
+                ports:
+                        - 5500:5500
+                container_name: teste
+                image: teste_gt/teste:1.0
+                command: >
+                  sh -c  "service apache2 restart && sleep infinity"
+                networks:
+                        test_network:
+                                ipv4_address: 10.0.11.2
+
+
+networks:
+ test_network:
+  driver: bridge
+  ipam:
+   config:
+    - subnet: 10.0.11.0/29
+      gateway: 10.0.11.1
