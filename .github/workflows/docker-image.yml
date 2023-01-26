@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: githubworkflow
 
 on:
   push:
@@ -12,5 +12,5 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Build the Docker image
+    - name: compose project
       run: docker-compose -f "docker-compose.yml" up -d --build
