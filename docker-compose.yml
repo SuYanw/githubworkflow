@@ -7,6 +7,7 @@ services:
                         - 5500:5500
                 container_name: teste
                 image: teste_gt/teste:1.0
+                pull_policy: never
                 command: >
                   sh -c  "service apache2 restart && sleep infinity"
                 networks:

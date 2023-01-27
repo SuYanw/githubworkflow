@@ -5,10 +5,10 @@ WORKDIR /app
 #Env for instalation from apache2
 ENV TZ=America/Sao_Paulo
 
-ARG DEBIAN_FRONTEND=noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 #Arg for instalation from apache2
-RUN  apt-get -y update && apt-get -y upgrade
+RUN  apt-get -y update && apt-get install -y --no-install-recommends apt-utils
 
 #Instalation of the app
 RUN apt-get -y install apt-utils apache2 python3 python3-pip libapache2-mod-wsgi-py3 unzip inetutils-ping
@@ -31,6 +31,9 @@ COPY apache2/envvars /etc/apache2/envvars
 #Install packets of the python
 RUN pip3 install -r /tmp/requirements.txt
 
+ENV DEBIAN_FRONTEND newt
+
 EXPOSE 5500
 
 CMD ["/bin/bash"]
+
