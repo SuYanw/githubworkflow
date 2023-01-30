@@ -5,4 +5,4 @@ export APACHE_RUN_DIR=/var/run/apache2$SUFFIX
 export APACHE_LOCK_DIR=/var/lock/apache2$SUFFIX
 export APACHE_LOG_DIR=/var/log/apache2$SUFFIX
 export LANG=C
-export TEST=${FSFS}
+export TEST="${SQL_HOST}"
