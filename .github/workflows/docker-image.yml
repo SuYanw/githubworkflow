@@ -15,17 +15,17 @@ jobs:
     - name: build and deploy project
       run: |
         touch server/app/.env
-        echo DB_HOST=${{ secrets.DB_HOST }}'\n\r' >> server/app/.env
-        echo DB_USER=${{ secrets.DB_USER }}'\n\r' >> server/app/.env
-        echo DB_PASS=${{ secrets.DB_PASS }}'\n\r' >> server/app/.env
-        echo DB_PORT=${{ secrets.DB_PORT }}'\n\r' >> server/app/.env
-        echo DB_BASE=${{ secrets.DB_BASE }}'\n\r' >> server/app/.env
+        echo DB_HOST=${{ secrets.DB_HOST }} >> server/app/.env
+        echo DB_USER=${{ secrets.DB_USER }} >> server/app/.env
+        echo DB_PASS=${{ secrets.DB_PASS }} >> server/app/.env
+        echo DB_PORT=${{ secrets.DB_PORT }} >> server/app/.env
+        echo DB_BASE=${{ secrets.DB_BASE }} >> server/app/.env
 
         docker-compose -f "docker-compose.yml" up -d --build --force-recreate
-      env:
+      # env:
         # DB_HOST: ${{ secrets.DB_HOST }}
         # DB_USER: ${{ secrets.DB_USER }}
         # DB_PASS: ${{ secrets.DB_PASS }}
         # DB_PORT: ${{ secrets.DB_PORT }}
         # DB_BASE: ${{ secrets.DB_BASE }}
-        STAGE: ${{ vars.STAGE }}
+        # STAGE: ${{ vars.STAGE }}
