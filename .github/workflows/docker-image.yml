@@ -15,6 +15,7 @@ jobs:
     - name: build and deploy project
       run: |
         env
+        docker-compose -f "docker-compose.yml" up -d --build --force-recreate
       env:
         DB_HOST: ${{ secrets.DB_HOST }}
         DB_USER: ${{ secrets.DB_USER }}
@@ -22,5 +23,3 @@ jobs:
         DB_PORT: ${{ secrets.DB_PORT }}
         DB_BASE: ${{ secrets.DB_BASE }}
         STAGE: ${{ vars.STAGE }}
-      
-      # run: docker-compose -f "docker-compose.yml" up -d --build --force-recreate
