@@ -11,7 +11,7 @@ services:
                         SQL_BASE: ${DB_BASE} 
                 ports:
                         - 5500:5500
-                container_name: teste
+                container_name: ${DB_USER} 
                 image: teste_gt/teste:1.0
                 pull_policy: never
                 command: >
