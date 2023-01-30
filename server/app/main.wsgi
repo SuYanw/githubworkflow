@@ -8,7 +8,7 @@ file = open("/app/.env", "r")
 lines = file.readlines()
 for line in lines:
     key = line.strip().split("=")[0]
-    val = line.strip().split("=")[1][1:-1]
+    val = line.strip().split("=")[1]
 
     os.environ[key] = val
 
