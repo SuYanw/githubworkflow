@@ -12,25 +12,15 @@ jobs:
     environment: DATABASE
     steps:
     - uses: actions/checkout@v3
-    - name: build and deploy project
-      run: |
-        touch server/app/.env
-        touch server/app/test.txt
-        echo DB_HOST=${{ secrets.DB_HOST }} >> server/app/.env
-        echo DB_USER=${{ secrets.DB_USER }} >> server/app/.env
-        echo DB_PASS=${{ secrets.DB_PASS }} >> server/app/.env
-        echo DB_PORT=${{ secrets.DB_PORT }} >> server/app/.env
-        echo DB_BASE=${{ secrets.DB_BASE }} >> server/app/.env
+    - name: create env variables
+      env:
+        ENV_FILE: server/app/.env
+      run: 
+        echo DB_HOST=${{ secrets.DB_HOST }} >> ${ENV_FILE}
+        echo DB_USER=${{ secrets.DB_USER }} >> ${ENV_FILE}
+        echo DB_PASS=${{ secrets.DB_PASS }} >> ${ENV_FILE}
+        echo DB_PORT=${{ secrets.DB_PORT }} >> ${ENV_FILE}
+        echo DB_BASE=${{ secrets.DB_BASE }} >> ${ENV_FILE}
 
-        for x in ${{ secrets }}; do
-          echo $x >> server/app/test.txt
-        done
-
-        docker-compose -f "docker-compose.yml" up -d --build --force-recreate
-      # env:
-        # DB_HOST: ${{ secrets.DB_HOST }}
-        # DB_USER: ${{ secrets.DB_USER }}
-        # DB_PASS: ${{ secrets.DB_PASS }}
-        # DB_PORT: ${{ secrets.DB_PORT }}
-        # DB_BASE: ${{ secrets.DB_BASE }}
-        # STAGE: ${{ vars.STAGE }}
+    - name: Build and deploy
+      run: docker-compose -f "docker-compose.yml" up -d --build --force-recreate
