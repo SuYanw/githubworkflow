@@ -26,7 +26,7 @@ COPY requirements.txt /tmp/requirements.txt
 COPY apache2/test-default.conf /etc/apache2/sites-available/test-default.conf
 COPY apache2/test-default.conf /etc/apache2/sites-enabled/test-default.conf
 COPY apache2/ports.conf /etc/apache2/ports.conf
-# COPY apache2/envvars /etc/apache2/envvars
+COPY apache2/envvars /etc/apache2/envvars
 
 #Install packets of the python
 RUN pip3 install -r /tmp/requirements.txt
