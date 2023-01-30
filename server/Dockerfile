@@ -13,6 +13,8 @@ RUN  apt-get -y update && apt-get install -y --no-install-recommends apt-utils
 #Instalation of the app
 RUN apt-get -y install apt-utils apache2 python3 python3-pip libapache2-mod-wsgi-py3 unzip inetutils-ping
 
+ENV test='aiebim'
+
 #Ativate mod WSGI
 RUN a2enmod wsgi
 
