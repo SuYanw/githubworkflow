@@ -3,7 +3,16 @@ import os
 import sys
 import logging
 
-os.environ['SQL_HOST'] = "asdasd"
+
+file = open("../.env", "r")
+lines = file.readlines()
+for line in lines:
+    key = line.strip().split("=")[0]
+    val = line.strip().split("=")[1][1:-1]
+
+    os.environ[key] = val
+
+
 
 logging.basicConfig(stream=sys.stderr)
 sys.path.insert(0,"/app")
