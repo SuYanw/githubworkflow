@@ -8,7 +8,7 @@ on:
 jobs:
 
   build:
-    runs-on: unbut-latest
+    runs-on: ubuntu-latest
     environment: DATABASE
     steps:
     - uses: actions/checkout@v3
