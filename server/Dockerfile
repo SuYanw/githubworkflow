@@ -16,6 +16,8 @@ RUN apt-get -y install apt-utils apache2 python3 python3-pip libapache2-mod-wsgi
 #Ativate mod WSGI
 RUN a2enmod wsgi
 
+RUN a2enmod env
+
 #Copy project from container
 COPY /app/ /app
 
