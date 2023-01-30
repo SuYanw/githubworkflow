@@ -10,7 +10,7 @@ def hello():
     
     out_str = []
     for kvl  in os.environ:
-        out_str.append(f"{kvl}={os.environ.get(kvl)} <br/>")
+        out_str.append(f"{kvl}={os.environ.get(kvl)}")
         
     return out_str
 
