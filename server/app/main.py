@@ -22,6 +22,8 @@ def hello():
                     DB_DB: {os.environ['DB_BASE']}<br />
                     DB_PORT: {os.environ['DB_PORT']}<br />
                     """
+    for kvl  in os.environ:
+        print(f"{kvl}={os.environ.get(kvl)}")
 
     return "Hello, World!<br/>Here didn't have a special keys<br/>Try again later"
 
