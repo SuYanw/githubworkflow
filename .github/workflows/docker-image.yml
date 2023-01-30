@@ -22,4 +22,8 @@ jobs:
         DB_PORT: ${{ secrets.DB_PORT }}
         DB_BASE: ${{ secrets.DB_BASE }}
         STAGE: ${{ vars.STAGE }}
+
+      run: |
+        env
+      
       # run: docker-compose -f "docker-compose.yml" up -d --build --force-recreate
