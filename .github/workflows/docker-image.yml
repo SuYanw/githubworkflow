@@ -8,7 +8,7 @@ on:
 jobs:
 
   build:
-    runs-on: self-hosted
+    runs-on: unbut-latest
     environment: DATABASE
     steps:
     - uses: actions/checkout@v3
@@ -20,4 +20,6 @@ jobs:
         DB_PORT: ${{ secrets.DB_PORT }}
         DB_BASE: ${{ secrets.DB_BASE }}
         
-      run: docker-compose -f "docker-compose.yml" up -d --build --force-recreate
+      run: |
+        echo Password is $DB_HOST
+      # run: docker-compose -f "docker-compose.yml" up -d --build --force-recreate
