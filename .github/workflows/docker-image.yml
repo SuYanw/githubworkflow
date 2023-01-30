@@ -14,7 +14,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: build and deploy project
       run: |
-        echo Password is $ENGINE
+        echo Password is $STAGE
       env:
         DB_HOST: ${{ secrets.DB_HOST }}
         DB_USER: ${{ secrets.DB_USER }}
