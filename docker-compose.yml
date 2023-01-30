@@ -5,11 +5,6 @@ services:
                 restart: always
                 environment:
                         - .env
-                        # SQL_HOST: ${DB_HOST} 
-                        # SQL_USER: ${DB_USER} 
-                        # SQL_PASS: ${DB_PASS} 
-                        # SQL_PORT: ${DB_PORT} 
-                        # SQL_BASE: ${DB_BASE} 
                 ports:
                         - 5500:5500
                 container_name: teste
