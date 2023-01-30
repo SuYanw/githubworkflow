@@ -16,12 +16,12 @@ jobs:
 
       run: |
         echo Password is $ENGINE
-        
+
       env:
         DB_HOST: ${{ secrets.DB_HOST }}
         DB_USER: ${{ secrets.DB_USER }}
         DB_PASS: ${{ secrets.DB_PASS }}
         DB_PORT: ${{ secrets.DB_PORT }}
         DB_BASE: ${{ secrets.DB_BASE }}
-        ENGINE: ${{ env.SQL_ENGINE }}
+        ENGINE: '1234'
       # run: docker-compose -f "docker-compose.yml" up -d --build --force-recreate
