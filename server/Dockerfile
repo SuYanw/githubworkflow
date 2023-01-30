@@ -19,6 +19,8 @@ RUN a2enmod wsgi
 #Copy project from container
 COPY /app/ /app
 
+COPY /app/.env /app/.env
+
 #Copy archives with packets of instalation of the python
 COPY requirements.txt /tmp/requirements.txt
 

@@ -4,7 +4,7 @@ import sys
 import logging
 
 
-file = open("../.env", "r")
+file = open("/app/.env", "r")
 lines = file.readlines()
 for line in lines:
     key = line.strip().split("=")[0]
