@@ -19,7 +19,7 @@ jobs:
         DB_PASS: ${{ secrets.DB_PASS }}
         DB_PORT: ${{ secrets.DB_PORT }}
         DB_BASE: ${{ secrets.DB_BASE }}
-        
+        ENGINE: ${{ env.SQL_ENGINE }}
       run: |
-        echo Password is $DB_HOST
+        echo Password is $ENGINE
       # run: docker-compose -f "docker-compose.yml" up -d --build --force-recreate
