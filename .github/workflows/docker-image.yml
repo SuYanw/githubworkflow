@@ -14,6 +14,7 @@ jobs:
     - name: create env variables
       env:
         ENV_FILE: server/app/.env
+        DB_VERSION: ${{ vars.VERSION }}
       run: 
         echo DB_HOST=${{ secrets.DB_HOST }} >> ${ENV_FILE}
         echo DB_USER=${{ secrets.DB_USER }} >> ${ENV_FILE}
