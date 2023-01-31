@@ -15,13 +15,13 @@ jobs:
       env:
         ENV_FILE: server/app/.env
       run: 
-        echo DB_HOST=${{ secrets.DB_HOST }} >> ${ENV_FILE}
-        echo DB_USER=${{ secrets.DB_USER }} >> ${ENV_FILE}
-        echo DB_PASS=${{ secrets.DB_PASS }} >> ${ENV_FILE}
-        echo DB_PORT=${{ secrets.DB_PORT }} >> ${ENV_FILE}
-        echo DB_BASE=${{ secrets.DB_BASE }} >> ${ENV_FILE}
-        echo VERSION=${{ vars.VERSION }} >> ${ENV_FILE}
-        echo NAME=${{ vars.NAME }} >> ${ENV_FILE}
+        echo -e DB_HOST=${{ secrets.DB_HOST }} >> ${ENV_FILE} 
+        echo -e DB_USER=${{ secrets.DB_USER }} >> ${ENV_FILE}
+        echo -e DB_PASS=${{ secrets.DB_PASS }} >> ${ENV_FILE}
+        echo -e DB_PORT=${{ secrets.DB_PORT }} >> ${ENV_FILE}
+        echo -e DB_BASE=${{ secrets.DB_BASE }} >> ${ENV_FILE}
+        echo -e VERSION=${{ vars.VERSION }} >> ${ENV_FILE}
+        echo -e NAME=${{ vars.NAME }} >> ${ENV_FILE}
 
     - name: Build and deploy
       run: docker-compose -f "docker-compose.yml" up -d --build --force-recreate
