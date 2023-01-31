@@ -25,14 +25,13 @@ jobs:
         echo "::echo::on"
 
     - name: create env file
-      run: |
-        touch $ENV_FILE
-        {
-          echo '${{ fromJSON(steps.release_data.outputs.body) }}'
-        } >> $ENV_FILE
-
       env:
         ENV_FILE: server/app/.env
+      run: |
+        touch ${ENV_FILE}
+        {
+          echo '${{ fromJSON(steps.release_data.outputs.body) }}'
+        } >> ${ENV_FILE}
 
     - name: Build and deploy
       run: docker-compose -f "docker-compose.yml" up -d --build --force-recreate
