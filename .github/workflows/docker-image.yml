@@ -13,18 +13,19 @@ jobs:
     - uses: actions/checkout@v3
     - name: create env variables
       env:
-        ENV_FILE: server/app/.env
+        APACHE2_ENV_FILE: server/app/.env
+        APP_ENV_FILE: .env
       run: |
         touch ${ENV_FILE}
-        echo DB_HOST=${{ secrets.DB_HOST }} >> ${ENV_FILE}
-        echo DB_USER=${{ secrets.DB_USER }} >> ${ENV_FILE}
-        echo DB_PASS=${{ secrets.DB_PASS }} >> ${ENV_FILE}
-        echo DB_PORT=${{ secrets.DB_PORT }} >> ${ENV_FILE}
-        echo DB_BASE=${{ secrets.DB_BASE }} >> ${ENV_FILE}
+        echo DB_HOST=${{ secrets.DB_HOST }} >> ${APACHE2_ENV_FILE}
+        echo DB_USER=${{ secrets.DB_USER }} >> ${APACHE2_ENV_FILE}
+        echo DB_PASS=${{ secrets.DB_PASS }} >> ${APACHE2_ENV_FILE}
+        echo DB_PORT=${{ secrets.DB_PORT }} >> ${APACHE2_ENV_FILE}
+        echo DB_BASE=${{ secrets.DB_BASE }} >> ${APACHE2_ENV_FILE}
 
-        echo NAME=${{ vars.NAME }} >> ${ENV_FILE}
-        echo STAGE=${{ vars.STAGE }} >> ${ENV_FILE}
-        echo VERSION=${{ vars.VERSION }} >> ${ENV_FILE}
+        echo NAME=${{ vars.NAME }} >> ${APP_ENV_FILE}
+        echo STAGE=${{ vars.STAGE }} >> ${APP_ENV_FILE}
+        echo VERSION=${{ vars.VERSION }} >> ${APP_ENV_FILE}
 
     - name: Build and deploy
       run: docker-compose -f "docker-compose.yml" up -d --build --force-recreate
