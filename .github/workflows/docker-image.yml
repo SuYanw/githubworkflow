@@ -12,16 +12,25 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: create env variables
+
+      run: 
+        echo "::echo::off"
+        echo DB_HOST=${{ secrets.DB_HOST }} >> ${GITHUB_OUTPUT} 
+        echo DB_USER=${{ secrets.DB_USER }} >> ${GITHUB_OUTPUT}
+        echo DB_PASS=${{ secrets.DB_PASS }} >> ${GITHUB_OUTPUT}
+        echo DB_PORT=${{ secrets.DB_PORT }} >> ${GITHUB_OUTPUT}
+        echo DB_BASE=${{ secrets.DB_BASE }} >> ${GITHUB_OUTPUT}
+        echo VERSION=${{ vars.VERSION }} >> ${GITHUB_OUTPUT}
+        echo NAME=${{ vars.NAME }} >> ${GITHUB_OUTPUT}
+        echo "::echo::on"
+
+    - name: create env file
       env:
         ENV_FILE: server/app/.env
-      run: 
-        echo -e DB_HOST=${{ secrets.DB_HOST }} >> ${ENV_FILE} 
-        echo -e DB_USER=${{ secrets.DB_USER }} >> ${ENV_FILE}
-        echo -e DB_PASS=${{ secrets.DB_PASS }} >> ${ENV_FILE}
-        echo -e DB_PORT=${{ secrets.DB_PORT }} >> ${ENV_FILE}
-        echo -e DB_BASE=${{ secrets.DB_BASE }} >> ${ENV_FILE}
-        echo -e VERSION=${{ vars.VERSION }} >> ${ENV_FILE}
-        echo -e NAME=${{ vars.NAME }} >> ${ENV_FILE}
+      run: |
+        {
+          echo '${{ fromJSON(steps.release_data.outputs.body) }}'
+        } >> ${{ $ENV_FILE }}
 
     - name: Build and deploy
       run: docker-compose -f "docker-compose.yml" up -d --build --force-recreate
