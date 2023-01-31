@@ -7,7 +7,7 @@ services:
                         - .env
                 ports:
                         - 5500:5500
-                container_name: ${nome_projeto}
+                container_name: "1.0"
                 image: teste_gt/teste:${VER}
                 pull_policy: never
                 command: >
