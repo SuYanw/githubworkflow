@@ -16,13 +16,14 @@ jobs:
         APACHE2_ENV_FILE: server/app/.env
         APP_ENV_FILE: .env
       run: |
-        touch ${ENV_FILE}
+        touch ${APACHE2_ENV_FILE}
         echo DB_HOST=${{ secrets.DB_HOST }} >> ${APACHE2_ENV_FILE}
         echo DB_USER=${{ secrets.DB_USER }} >> ${APACHE2_ENV_FILE}
         echo DB_PASS=${{ secrets.DB_PASS }} >> ${APACHE2_ENV_FILE}
         echo DB_PORT=${{ secrets.DB_PORT }} >> ${APACHE2_ENV_FILE}
         echo DB_BASE=${{ secrets.DB_BASE }} >> ${APACHE2_ENV_FILE}
 
+        touch ${APP_ENV_FILE}
         echo NAME=${{ vars.NAME }} >> ${APP_ENV_FILE}
         echo STAGE=${{ vars.STAGE }} >> ${APP_ENV_FILE}
         echo VERSION=${{ vars.VERSION }} >> ${APP_ENV_FILE}
