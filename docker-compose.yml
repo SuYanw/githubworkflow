@@ -5,7 +5,7 @@ services:
                 restart: always
                 environment:
                         - .env
-                        - SERVICE_PORT: ${SERVICE_PORT}
+                        SERVICE_PORT: ${SERVICE_PORT}
                 ports:
                         - ${SERVICE_PORT}:${SERVICE_PORT}
                 container_name: ${NAME}
