@@ -30,7 +30,9 @@ jobs:
         echo VERSION=${{ vars.VERSION }} >> ${APP_ENV_FILE}
         echo SERVICE_PORT=${{ vars.SERVICE_PORT }} >> ${APP_ENV_FILE}
 
-        +
+
+    - name: appending apache envvars
+        run: |+
         echo 'export NAME=${{ vars.NAME }}' >> ${APACHE2_ENVVARS}
 
     # - name: Build and deploy
