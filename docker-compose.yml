@@ -6,7 +6,7 @@ services:
                 environment:
                         - .env
                 ports:
-                        - 5500:5500
+                        - ${SERVICE_PORT}:${SERVICE_PORT}
                 container_name: ${NAME}
                 image: teste_gt/${NAME}:${VERSION}
                 pull_policy: never
