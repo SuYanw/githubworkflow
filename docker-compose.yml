@@ -1,16 +1,17 @@
 version: "3"
 services:
-        teste_gt:
-
-                environment:
-                        - .env
+        frontend:
                 build: ./server
                 restart: always
                 ports:
                         - ${SERVICE_PORT}:${SERVICE_PORT}
                 container_name: ${NAME}
-                image: teste_gt/${NAME}:${VERSION}
+                image: ${NAME}:${VERSION}
+                environment:
+                        SERVICE_PORT: '1234'
                 pull_policy: never
+                env_file:
+                        - .env
                 command: >
                   sh -c  "service apache2 restart && sleep infinity"
                 networks:
