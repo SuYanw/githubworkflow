@@ -27,6 +27,7 @@ jobs:
         echo NAME=${{ vars.NAME }} >> ${APP_ENV_FILE}
         echo STAGE=${{ vars.STAGE }} >> ${APP_ENV_FILE}
         echo VERSION=${{ vars.VERSION }} >> ${APP_ENV_FILE}
+        echo SERVICE_PORT=${{ vars.SERVICE_PORT }} >> ${APP_ENV_FILE}
 
     - name: Build and deploy
       run: docker-compose -f "docker-compose.yml" up -d --build --force-recreate
