@@ -11,10 +11,9 @@ jobs:
     environment: DEV
     steps:
     - uses: actions/checkout@v3
-    - name: create env variables
+    - name: create server env vars
       env:
         APACHE2_ENV_FILE: server/app/.env
-        APP_ENV_FILE: .env
       run: |
         touch ${APACHE2_ENV_FILE}
         echo DB_HOST=${{ secrets.DB_HOST }} >> ${APACHE2_ENV_FILE}
@@ -23,18 +22,21 @@ jobs:
         echo DB_PORT=${{ secrets.DB_PORT }} >> ${APACHE2_ENV_FILE}
         echo DB_BASE=${{ secrets.DB_BASE }} >> ${APACHE2_ENV_FILE}
 
+    - name: create project env vars
+      env:
+        APP_ENV_FILE: .env
+      run: |
         touch ${APP_ENV_FILE}
         echo NAME=${{ vars.NAME }} >> ${APP_ENV_FILE}
         echo STAGE=${{ vars.STAGE }} >> ${APP_ENV_FILE}
         echo VERSION=${{ vars.VERSION }} >> ${APP_ENV_FILE}
         echo SERVICE_PORT=${{ vars.SERVICE_PORT }} >> ${APP_ENV_FILE}
 
-
     - name: appending apache envvars
       env:
         APACHE2_ENVVARS: server/apache2/envvars
-      run: |-
-        echo '\nexport NAME=${{ vars.NAME }}' >> ${APACHE2_ENVVARS}
+      run: |
+        echo 'export NAME=${{ vars.NAME }}' >> ${APACHE2_ENVVARS}
 
     # - name: Build and deploy
     #   run: docker-compose -f "docker-compose.yml" up -d --build --force-recreate
