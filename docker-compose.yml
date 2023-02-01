@@ -13,12 +13,12 @@ services:
                 command: >
                   sh -c  "service apache2 restart && sleep infinity"
                 networks:
-                        ${NETWORK:_network}:
+                        ${NAME:_network}:
                                 ipv4_address: 10.0.11.2
 
 
 networks:
-  ${NETWORK:_network}:
+  ${NAME:_network}:
   driver: bridge
   ipam:
    config:
