@@ -19,7 +19,7 @@ services:
 
 networks:
  script_network:
-  name: ${NAME}
+  name: ${NAME}_network
   driver: bridge
   ipam:
    config:
