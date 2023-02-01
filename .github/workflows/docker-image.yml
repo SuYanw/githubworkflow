@@ -39,5 +39,5 @@ jobs:
         echo 'export NAME=${{ vars.NAME }}' >> ${APACHE2_ENVVARS}
         echo 'export SERVICE_PORT=${{ vars.SERVICE_PORT }}' >> ${APACHE2_ENVVARS}
 
-    # - name: Build and deploy
-    #   run: docker-compose -f "docker-compose.yml" up -d --build --force-recreate
+    - name: Build and deploy
+      run: docker-compose -f "docker-compose.yml" up -d --build --force-recreate
