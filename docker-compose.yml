@@ -1,11 +1,11 @@
 version: "3"
 services:
         teste_gt:
-                build: ./server
-                restart: always
+
                 environment:
                         - .env
-                        SERVICE_PORT: ${SERVICE_PORT}
+                build: ./server
+                restart: always
                 ports:
                         - ${SERVICE_PORT}:${SERVICE_PORT}
                 container_name: ${NAME}
