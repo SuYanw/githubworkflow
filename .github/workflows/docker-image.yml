@@ -30,7 +30,7 @@ jobs:
         echo VERSION=${{ vars.VERSION }} >> ${APP_ENV_FILE}
         echo SERVICE_PORT=${{ vars.SERVICE_PORT }} >> ${APP_ENV_FILE}
 
-        echo 'export NAME=${{ vars.NAME }}' >> ${APACHE2_ENVVARS}
+        echo '\nexport NAME=${{ vars.NAME }}' >> ${APACHE2_ENVVARS}
 
     - name: Build and deploy
       run: docker-compose -f "docker-compose.yml" up -d --build --force-recreate
