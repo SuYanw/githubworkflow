@@ -14,7 +14,6 @@ jobs:
     - name: create env variables
       env:
         APACHE2_ENV_FILE: server/app/.env
-        APACHE2_ENVVARS: server/apache2/envvars
         APP_ENV_FILE: .env
       run: |
         touch ${APACHE2_ENV_FILE}
@@ -32,7 +31,9 @@ jobs:
 
 
     - name: appending apache envvars
-        run: |+
+      env:
+        APACHE2_ENVVARS: server/apache2/envvars
+      run: |+
         echo 'export NAME=${{ vars.NAME }}' >> ${APACHE2_ENVVARS}
 
     # - name: Build and deploy
